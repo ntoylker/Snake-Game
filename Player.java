@@ -1,4 +1,3 @@
-
 public class Player {
 	// x5 VARIABLES
 	int playerId;
@@ -84,24 +83,10 @@ public class Player {
 	*/
 	
 	// c.
-	/* PERIGRAFH: υλοποιεί την κίνηση ενός παίκτη, αλλάζοντας τις μεταβλητές της θέσης του, του ταμπλού και των στοιχείων αυτού
-	 * Ελέγχει πρώτα αν το ζάρι στέλνει τον παίκτη στην τερματική γραμμή, ώστε να κάνει return
-	 * Αν ξεφύγει από τον έλεγχο αυτό, μπαίνει στην βασική loopα
-	 * H λογική είναι: νέα_θέση = θέση + ζάρι
-	 * Ελέγχω στη 'νέα_θέση' άμα βρίσκεται κάποιο στοιχείο του πίνακα (σκάλα, φίδι, δώρο)
-	 * Αμα βρίσκεται, τότε εκτελώ την ιδιότητα του στοιχείου αυτού
-	 * σκάλα: 'νεα_θέση' = κορυφή_σκάλας, κατάμετρηση της σκάλας στην result[] και μετά καταστροφή της συγκεκριμένης σκάλας + ΜΉΝΥΜΑ
-	 * φίδι: 'νέα_θέση' = ουρά_φιδιού και κατάμετρηση του φιδιού στην result[] + ΜΉΝΥΜΑ
-	 * δώρο: προσθήκη των ποντών στους πόντους του παίκτη και κατάμετρηση του δώρου στην result[]. Διαγραφή του δώρου + ΜΉΝΥΜΑ
-	 * Κάθε φορα που 'νέα_θέση' == στοιχείο, η loopα θα ισχύει, και θα ξανατρέχει ο έλεγχος
-	 * Αν ΔΕΝ βρεθεί κάποιο στοιχείο, τότε ΒΓΑΊΝΕΙ από την loopα
-	 * επιστρέφει έναν int array[], [new_position, snakes, ladders, presents]
-	 */
 	int[] move(int dice) {
 
 		int[] mov = new int[4]; // new square,snakes,ladders,presents = 4
 		String temp;
-		int prev;
 		position = position + dice;
 		
 		// WINNING MOVE: if the dice goes over the finish line or on it
@@ -123,18 +108,13 @@ public class Player {
 				
 				// PRINT THE CLIMBING info
 				System.out.print("("+position+")~"+name); 
-				prev = position;
 				
 				// MOVE UP
 				// new position = ladder_UP
 				position = board.getLadders()[i].getTopSquareId();
 				System.out.println(" found a ladder and climbed it! (->"+position+")");
 				
-				// break the ladder
-				board.getLadders()[i].setBroken(true);
-				// ASIGN "brk" IN BOARDLADDER for broken ladder
-				board.getBoardLadders()[position/board.getM()][position%board.getM()] = "___";
-				board.getBoardLadders()[prev/board.getM()][prev%board.getM()] = "___";
+                // LADDERS ARE NOW REUSABLE AND ARE NOT BROKEN OR REMOVED
 				
 				// SAVE IT IN move[]
 				mov[2] ++;
@@ -190,14 +170,6 @@ public class Player {
 	}
 	
 	// EXTRA FUNCTION
-	/* PERIGRAFH: εκτυπώνει το ταμπλό του παιχνιδιού, με όλα τα στοιχεία πάνω του + τη θέση του παίκτη
-	 * Τώρα, το πώς επιτυγχάνεται η εκτύπωση, είναι μαεστριά του μαέστρου
-	 * ανοίξτε τη συνάρτηση και δείτε, θα καταλάβετε
-	 * Tip: αντί για συνεχή κλήση της System.out.print(), έχω κατασκευάσει μια String μεταβλητή
-	 * και χρησιμοποιώ τη συνάρτηση String.concat("...") ώστε να προσθέτω τα πράγματα προς εκτύπωση
-	 * Τα μαζεύω όλα σε αυτήν την μεταβλητή, και στο τέλος την κάνω System.out.print(variable) (μεταξύ άλλων)
-	 * και εκτυπώνεται όλο το NxM ταμπλό πένα
-	 */
 	void print_current_board() {
 		String[][] ladders = board.getBoardLadders();
 		String[][] snakes = board.getBoardSnakes();

@@ -1,21 +1,16 @@
-
 public class Ladder {
 	// VARIABLES
 	int ladderId;
 	int topSquareId;
 	int bottomSquareId;
 	
-	boolean broken;
-	
 	// METHODS
 	/* CONSTRUCTORS */
 	Ladder(){} // empty
-	Ladder(int l, int t, int b){ // broken=false, x3 manually
+	Ladder(int l, int t, int b){
 		ladderId = l;
 		topSquareId = t;
 		bottomSquareId = b;
-		
-		broken = false;
 	}
 
 	/* GET-SETTERS */
@@ -28,9 +23,6 @@ public class Ladder {
 	int getBottomSquareId() {
 		return bottomSquareId;
 	}
-	boolean getBroken() {
-		return broken;
-	}
 	void setLadderId(int x) { 
 		ladderId = x;
 	}
@@ -40,8 +32,4 @@ public class Ladder {
 	void setBottomSquareId(int x) { 
 		bottomSquareId = x;
 	}
-	void setBroken(boolean x) {
-		broken = x;
-	}
-
 }
